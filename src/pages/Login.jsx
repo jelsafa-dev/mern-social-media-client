@@ -27,6 +27,7 @@ const Login = () => {
         <Typography className="font-bold" variant="h5" sx={{ mb: "1.5rem" }}>
           Welcome to Social Media
         </Typography>
+        <Form />
       </Box>
     </Box>
   );
