@@ -1,8 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const mode = {
+  light: "light",
+  dark: "dark",
+};
+
 const initialState = {
-  mode: "light",
+  mode: mode.light,
   user: null,
+  advert: {
+    title: "MikaCosmetics",
+    url: "mikacosmetics.com",
+    text: "..",
+  },
   token: null,
   posts: [],
 };
@@ -12,7 +22,12 @@ export const authSlice = createSlice({
   initialState: initialState,
   reducers: {
     toggleMode: (state) => {
-      state.mode = state.mode === "light" ? "dark" : "light";
+      state.mode = state.mode === mode.light ? mode.dark : mode.light;
+      if (state.mode === mode.dark) {
+        document.documentElement.classList.add(mode.dark);
+      } else {
+        document.documentElement.classList.remove(mode.dark);
+      }
     },
     setLogin: (state, action) => {
       state.user = action.payload.user;

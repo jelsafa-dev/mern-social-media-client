@@ -1,13 +1,10 @@
-import { Box, Typography, useTheme } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFriends } from "state";
-import WidgetWrapper from "./WidgetWrapper";
 import Friend from "./Friend";
 
 const FriendList = ({ userId }) => {
   const dispatch = useDispatch();
-  const { palette } = useTheme();
   const token = useSelector((state) => state.token);
   const friends = useSelector((state) => state.user.friends);
 
@@ -30,16 +27,9 @@ const FriendList = ({ userId }) => {
   if (!Array.isArray(friends)) return null;
 
   return (
-    <WidgetWrapper>
-      <Typography
-        color={palette.neutral.dark}
-        variant="h5"
-        fontWeight="500"
-        sx={{ mb: "1.5rem" }}
-      >
-        Friend List
-      </Typography>
-      <Box display="flex" flexDirection="column" gap="1.5rem">
+    <div className="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-sm">
+      <h5 className="font-medium text-lg mb-6">Friends</h5>
+      <div className="flex flex-col gap-6">
         {friends.map((friend) => (
           <Friend
             key={friend._id}
@@ -49,8 +39,8 @@ const FriendList = ({ userId }) => {
             userPicturePath={friend.picturePath}
           />
         ))}
-      </Box>
-    </WidgetWrapper>
+      </div>
+    </div>
   );
 };
 

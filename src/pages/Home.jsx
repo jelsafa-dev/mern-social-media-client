@@ -4,12 +4,13 @@ import Navbar from "./../components/Navbar";
 import User from "./../components/User";
 import MyPost from "./../components/MyPost";
 import Posts from "./../components/Posts";
-import Advert from "./../components/Advert";
-import FriendList from "./../components/FriendList";
+import Advert from "../components/Advert";
+import FriendList from "../components/FriendList";
 
 const Home = () => {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
   const { _id, picturePath } = useSelector((state) => state.user);
+  const advert = useSelector((state) => state.advert);
 
   return (
     <Box>
@@ -33,8 +34,8 @@ const Home = () => {
         </Box>
         {isNonMobileScreens && (
           <Box flexBasis="26%">
-            <Advert />
-            <Box m="2rem 0" />
+            <Advert {...advert} />
+            <div className="my-4" />
             <FriendList userId={_id} />
           </Box>
         )}

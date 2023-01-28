@@ -1,9 +1,7 @@
 import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setFriends } from "state";
-import FlexBetween from "./FlexBetween";
 import UserImage from "./UserImage";
 
 const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
@@ -12,12 +10,6 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const { _id } = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
   const friends = useSelector((state) => state.user.friends);
-
-  const { palette } = useTheme();
-  const primaryLight = palette.primary.light;
-  const primaryDark = palette.primary.dark;
-  const main = palette.neutral.main;
-  const medium = palette.neutral.medium;
 
   if (!Array.isArray(friends)) return null;
 
@@ -39,44 +31,31 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   };
 
   return (
-    <FlexBetween>
-      <FlexBetween gap="1rem">
+    <div className="flex justify-between items-center">
+      <div
+        className="flex justify-between items-center gap-4 cursor-pointer"
+        onClick={() => {
+          navigate(`/profile/${friendId}`);
+          navigate(0);
+        }}
+      >
         <UserImage image={userPicturePath} size="55px" />
-        <Box
-          onClick={() => {
-            navigate(`/profile/${friendId}`);
-            navigate(0);
-          }}
-        >
-          <Typography
-            color={main}
-            variant="h5"
-            fontWeight="500"
-            sx={{
-              "&:hover": {
-                color: palette.primary.light,
-                cursor: "pointer",
-              },
-            }}
-          >
-            {name}
-          </Typography>
-          <Typography color={medium} fontSize="0.75rem">
-            {subtitle}
-          </Typography>
-        </Box>
-      </FlexBetween>
-      <IconButton
+        <div className="flex flex-col gap-1">
+          <h5 className="font-semibold text-gray-500 text-base">{name}</h5>
+          <span className="text-xs text-gray-400">{subtitle}</span>
+        </div>
+      </div>
+      <button
+        className="bg-indigo-500 p-2 rounded-full shadow"
         onClick={() => patchFriend()}
-        sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
       >
         {isFriend ? (
-          <PersonRemoveOutlined sx={{ color: primaryDark }} />
+          <PersonRemoveOutlined className="text-white" />
         ) : (
-          <PersonAddOutlined sx={{ color: primaryDark }} />
+          <PersonAddOutlined className="text-white" />
         )}
-      </IconButton>
-    </FlexBetween>
+      </button>
+    </div>
   );
 };
 

@@ -1,16 +1,12 @@
-import { Box } from "@mui/material";
-
-const UserImage = ({ image, size = "60px" }) => {
+const UserImage = ({ image }) => {
   return (
-    <Box width={size} height={size}>
+    <div className={`max-h-[55px] max-w-[55px] h-[55px] w-[55px]`}>
       <img
-        style={{ objectFit: "cover", borderRadius: "50%" }}
-        width={size}
-        height={size}
+        className={`max-h-[55px] max-w-[55px] h-[55px] w-[55px] object-cover rounded-full`}
         alt="user"
         src={`http://localhost:3001/assets/user.jpeg`}
       />
-    </Box>
+    </div>
   );
 };
 
