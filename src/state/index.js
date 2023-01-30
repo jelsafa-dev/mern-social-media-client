@@ -23,11 +23,6 @@ export const authSlice = createSlice({
   reducers: {
     toggleMode: (state) => {
       state.mode = state.mode === mode.light ? mode.dark : mode.light;
-      if (state.mode === mode.dark) {
-        document.documentElement.classList.add(mode.dark);
-      } else {
-        document.documentElement.classList.remove(mode.dark);
-      }
     },
     setLogin: (state, action) => {
       state.user = action.payload.user;
