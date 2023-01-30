@@ -28,7 +28,7 @@ const Navbar = () => {
   const fullName = `${user?.firstName} ${user?.lastName}`;
   return (
     <div
-      className={`flex justify-between items-center py-1 px-8 shadow-sm bg-white dark:bg-slate-800`}
+      className={`flex justify-between items-center py-1 px-4 md:px-8 shadow-sm bg-white dark:bg-slate-800`}
     >
       <div className={`flex justify-between items-center gap-7`}>
         <Title />

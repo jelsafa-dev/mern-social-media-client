@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setFriends } from "state";
 import Friend from "./Friend";
 
-const FriendList = ({ userId }) => {
+const FriendList = ({ className, userId }) => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   const friends = useSelector((state) => state.user.friends);
@@ -27,7 +27,9 @@ const FriendList = ({ userId }) => {
   if (!Array.isArray(friends)) return null;
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-lg px-4 py-4 lg:px-6 lg:py-8 ring-1 ring-slate-900/5 shadow-sm">
+    <div
+      className={`${className} bg-white dark:bg-slate-800 rounded-lg px-4 py-4 lg:px-6 lg:py-8 ring-1 ring-slate-900/5 shadow-sm`}
+    >
       <h5 className="font-medium text-lg mb-6">Friends</h5>
       <div className="flex flex-col gap-6">
         {friends.map((friend) => (

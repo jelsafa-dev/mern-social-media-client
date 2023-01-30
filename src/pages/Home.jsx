@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <div className="bg-gray-50 dark:bg-slate-900">
       <Navbar />
-      <div className="block sm:flex w-100 p-8 gap-8 md:gap-4 justify-center">
+      <div className="block sm:flex w-100 p-4 lg:p-8 gap-4 lg:gap-8 justify-center">
         <div className="min-w-[270px] max-w-[320px] lg:min-w-[340px] lg:max-w-[420px] hidden sm:block">
           <User userId={_id} picturePath={picturePath} />
         </div>

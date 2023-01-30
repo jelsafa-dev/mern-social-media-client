@@ -48,7 +48,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
       </div>
       {!isUser && (
         <button
-          className="bg-indigo-500 hover:bg-indigo-600 p-2 rounded-full shadow hidden lg:block"
+          className="bg-indigo-500 hover:bg-indigo-600 p-2 rounded-full shadow hidden md:block"
           onClick={() => patchFriend()}
         >
           {isFriend ? (

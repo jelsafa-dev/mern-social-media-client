@@ -98,17 +98,21 @@ const MyPost = ({ picturePath }) => {
           <ImageOutlined />
           <p>Image</p>
         </div>
-        <div className="flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 cursor-pointer">
+        <div className="hidden md:flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 cursor-pointer">
           <GifBoxOutlined />
           <p>Clip</p>
         </div>
-        <div className="flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 cursor-pointer">
+        <div className="hidden md:flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 cursor-pointer">
           <AttachFileOutlined />
           <p>Attachment</p>
         </div>
-        <div className="flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 cursor-pointer">
+        <div className="hidden md:flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 cursor-pointer">
           <MicOutlined />
           <p>Audio</p>
+        </div>
+
+        <div className="flex md:hidden justify-between items-center gap-1 text-gray-500 hover:text-gray-400 cursor-pointer">
+          <MoreHorizOutlined />
         </div>
         <button
           className="bg-indigo-500  hover:bg-indigo-600  p-2 rounded-full shadow py-2 px-4 text-xs text-white cursor-pointer"
