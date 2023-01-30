@@ -1,11 +1,12 @@
 import { Box, useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 import Navbar from "./../components/Navbar";
-import User from "./../components/User";
 import MyPost from "./../components/MyPost";
 import Posts from "./../components/Posts";
 import Advert from "../components/Advert";
 import FriendList from "../components/FriendList";
+import User from "./../components/User";
+import NavbarOld from "./../components/NavbarOld";
 
 const Home = () => {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
@@ -14,6 +15,7 @@ const Home = () => {
 
   return (
     <Box>
+      <NavbarOld />
       <Navbar />
       <Box
         width="100%"

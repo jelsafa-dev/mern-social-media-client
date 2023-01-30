@@ -4,13 +4,10 @@ import {
   FavoriteOutlined,
   ShareOutlined,
 } from "@mui/icons-material";
-import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
-import FlexBetween from "components/FlexBetween";
-import Friend from "components/Friend";
-import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
+import Friend from "./Friend";
 
 const Post = ({
   postId,
@@ -30,10 +27,6 @@ const Post = ({
   const isLiked = Boolean(likes[loggedInUserId]);
   const likeCount = Object.keys(likes).length;
 
-  const { palette } = useTheme();
-  const main = palette.neutral.main;
-  const primary = palette.primary.main;
-
   const patchLike = async () => {
     const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
       method: "PATCH",
@@ -48,65 +41,52 @@ const Post = ({
   };
 
   return (
-    <WidgetWrapper m="2rem 0">
+    <div className="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-sm my-4">
       <Friend
         friendId={postUserId}
         name={name}
         subtitle={location}
         userPicturePath={userPicturePath}
       />
-      <Typography color={main} sx={{ mt: "1rem" }}>
-        {description}
-      </Typography>
+      <p className="mt-4">{description}</p>
       {picturePath && (
         <img
-          width="100%"
-          height="auto"
+          className="w-100 h-auto rounded-lg mt-3"
           alt="post"
-          style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
           src={`http://localhost:3001/assets/${picturePath}`}
         />
       )}
-      <FlexBetween mt="0.25rem">
-        <FlexBetween gap="1rem">
-          <FlexBetween gap="0.3rem">
-            <IconButton onClick={patchLike}>
+      <div className="flex justify-between items-center mt-4">
+        <div className="flex justify-between items-center gap-4">
+          <div className="flex justify-between items-center gap-1">
+            <button onClick={patchLike}>
               {isLiked ? (
-                <FavoriteOutlined sx={{ color: primary }} />
+                <FavoriteOutlined className="text-red-600" />
               ) : (
                 <FavoriteBorderOutlined />
               )}
-            </IconButton>
-            <Typography>{likeCount}</Typography>
-          </FlexBetween>
-
-          <FlexBetween gap="0.3rem">
-            <IconButton onClick={() => setIsComments(!isComments)}>
+            </button>
+            <p>{likeCount}</p>
+          </div>
+          <div className="flex justify-between items-center gap-1">
+            <button onClick={() => setIsComments(!isComments)}>
               <ChatBubbleOutlineOutlined />
-            </IconButton>
-            <Typography>{comments && comments.length}</Typography>
-          </FlexBetween>
-        </FlexBetween>
-
-        <IconButton>
-          <ShareOutlined />
-        </IconButton>
-      </FlexBetween>
+            </button>
+            <p>{comments && comments.length}</p>
+          </div>
+        </div>
+      </div>
       {isComments && (
-        <Box mt="0.5rem">
+        <div className="mt-2">
           {comments &&
             comments.map((comment, i) => (
-              <Box key={`${name}-${i}`}>
-                <Divider />
-                <Typography sx={{ color: main, m: "0.5rem 0", pl: "1rem" }}>
-                  {comment}
-                </Typography>
-              </Box>
+              <div key={`${name}-${i}`}>
+                <p className="mx-2 pl-2">{comment}</p>
+              </div>
             ))}
-          <Divider />
-        </Box>
+        </div>
       )}
-    </WidgetWrapper>
+    </div>
   );
 };
 

@@ -7,35 +7,19 @@ import {
   MicOutlined,
   MoreHorizOutlined,
 } from "@mui/icons-material";
-import {
-  Box,
-  Divider,
-  Typography,
-  InputBase,
-  useTheme,
-  Button,
-  IconButton,
-  useMediaQuery,
-} from "@mui/material";
 import Dropzone from "react-dropzone";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
 import UserImage from "./UserImage";
-import WidgetWrapper from "./WidgetWrapper";
-import FlexBetween from "./FlexBetween";
 
 const MyPost = ({ picturePath }) => {
   const dispatch = useDispatch();
   const [isImage, setIsImage] = useState(false);
   const [image, setImage] = useState(null);
   const [post, setPost] = useState("");
-  const { palette } = useTheme();
   const { _id } = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
-  const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
-  const mediumMain = palette.neutral.mediumMain;
-  const medium = palette.neutral.medium;
 
   const handlePost = async () => {
     const formData = new FormData();
@@ -58,115 +42,83 @@ const MyPost = ({ picturePath }) => {
   };
 
   return (
-    <WidgetWrapper>
-      <FlexBetween gap="1.5rem">
+    <div className="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-sm">
+      <div className="flex items-center gap-6">
         <UserImage image={picturePath} />
-        <InputBase
-          placeholder="What's on your mind..."
-          onChange={(e) => setPost(e.target.value)}
-          value={post}
-          sx={{
-            width: "100%",
-            backgroundColor: palette.neutral.light,
-            borderRadius: "2rem",
-            padding: "1rem 2rem",
-          }}
-        />
-      </FlexBetween>
+        <div className="w-full rounded-full py-4 px-8 bg-gray-100">
+          <input
+            className="w-full bg-transparent focus:outline-none"
+            placeholder="What's on your mind..."
+            onChange={(e) => setPost(e.target.value)}
+            value={post}
+          />
+        </div>
+      </div>
       {isImage && (
-        <Box
-          border={`1px solid ${medium}`}
-          borderRadius="5px"
-          mt="1rem"
-          p="1rem"
-        >
+        <div className="border-2 border-dashed rounded p-4 mt-4">
           <Dropzone
             acceptedFiles=".jpg,.jpeg,.png"
             multiple={false}
             onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}
           >
             {({ getRootProps, getInputProps }) => (
-              <FlexBetween>
-                <Box
+              <div className="flex cursor-pointer w-100 gap-4">
+                <div
                   {...getRootProps()}
-                  border={`2px dashed ${palette.primary.main}`}
-                  p="1rem"
-                  width="100%"
-                  sx={{ "&:hover": { cursor: "pointer" } }}
+                  className="text-gray-500 hover:text-gray-400"
                 >
-                  <input {...getInputProps()} />
                   {!image ? (
-                    <p>Add Image Here</p>
+                    <p>Add Image Here...</p>
                   ) : (
-                    <FlexBetween>
-                      <Typography>{image.name}</Typography>
+                    <div className="flex items-center gap-4">
                       <EditOutlined />
-                    </FlexBetween>
+                      <p>{image.name}</p>
+                    </div>
                   )}
-                </Box>
+                </div>
                 {image && (
-                  <IconButton
+                  <button
+                    className="text-gray-500 hover:text-gray-400"
                     onClick={() => setImage(null)}
-                    sx={{ width: "15%" }}
                   >
                     <DeleteOutlined />
-                  </IconButton>
+                  </button>
                 )}
-              </FlexBetween>
+              </div>
             )}
           </Dropzone>
-        </Box>
+        </div>
       )}
-
-      <Divider sx={{ margin: "1.25rem 0" }} />
-
-      <FlexBetween>
-        <FlexBetween gap="0.25rem" onClick={() => setIsImage(!isImage)}>
-          <ImageOutlined sx={{ color: mediumMain }} />
-          <Typography
-            color={mediumMain}
-            sx={{ "&:hover": { cursor: "pointer", color: medium } }}
-          >
-            Image
-          </Typography>
-        </FlexBetween>
-
-        {isNonMobileScreens ? (
-          <>
-            <FlexBetween gap="0.25rem">
-              <GifBoxOutlined sx={{ color: mediumMain }} />
-              <Typography color={mediumMain}>Clip</Typography>
-            </FlexBetween>
-
-            <FlexBetween gap="0.25rem">
-              <AttachFileOutlined sx={{ color: mediumMain }} />
-              <Typography color={mediumMain}>Attachment</Typography>
-            </FlexBetween>
-
-            <FlexBetween gap="0.25rem">
-              <MicOutlined sx={{ color: mediumMain }} />
-              <Typography color={mediumMain}>Audio</Typography>
-            </FlexBetween>
-          </>
-        ) : (
-          <FlexBetween gap="0.25rem">
-            <MoreHorizOutlined sx={{ color: mediumMain }} />
-          </FlexBetween>
-        )}
-
-        <Button
+      <div className="border-b w-100 my-5" />
+      <div className="flex justify-between items-center">
+        <div
+          className="flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 cursor-pointer"
+          onClick={() => setIsImage(!isImage)}
+        >
+          <ImageOutlined />
+          <p>Image</p>
+        </div>
+        <div className="flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 cursor-pointer">
+          <GifBoxOutlined />
+          <p>Clip</p>
+        </div>
+        <div className="flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 cursor-pointer">
+          <AttachFileOutlined />
+          <p>Attachment</p>
+        </div>
+        <div className="flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 cursor-pointer">
+          <MicOutlined />
+          <p>Audio</p>
+        </div>
+        <button
+          className="bg-indigo-500  hover:bg-indigo-600  p-2 rounded-full shadow py-2 px-4 text-xs text-white cursor-pointer"
           disabled={!post}
           onClick={handlePost}
-          sx={{
-            color: palette.background.alt,
-            backgroundColor: palette.primary.main,
-            borderRadius: "3rem",
-          }}
         >
           POST
-        </Button>
-      </FlexBetween>
-    </WidgetWrapper>
+        </button>
+      </div>
+    </div>
   );
 };
 

@@ -23,9 +23,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMode, setLogout } from "state";
 import { useNavigate } from "react-router-dom";
-import { Title } from "./Title";
 
-const Navbar = () => {
+const NavbarOld = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggle] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -38,11 +37,24 @@ const Navbar = () => {
   const fullName = `${user?.firstName} ${user?.lastName}`;
   return (
     <div
-      className={`flex justify-between items-center py-1 px-8 shadow-sm`}
+      className={`flex justify-between items-center py-1 px-8`}
       style={{ backgroundColor: background.alt }}
     >
       <div className={`flex justify-between items-center gap-7`}>
-        <Title />
+        <Typography
+          fontWeight="bold"
+          fontSize="clamp(1rem, 2rem, 2.25rem)"
+          color="primary"
+          onClick={() => navigate("/home")}
+          sx={{
+            "&hover": {
+              color: primary.light,
+              cursor: "pointer",
+            },
+          }}
+        >
+          Social Media
+        </Typography>
         {isNonMobileScreens && (
           <div
             className={`flex justify-between items-center rounded-[9px] gap-12 py-0 px-6`}
@@ -167,4 +179,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarOld;

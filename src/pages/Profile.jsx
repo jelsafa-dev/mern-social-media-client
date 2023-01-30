@@ -6,7 +6,7 @@ import Navbar from "./../components/Navbar";
 import FriendList from "../components/FriendList";
 import MyPost from "./../components/MyPost";
 import Posts from "./../components/Posts";
-import User from "./../components/User";
+import User from "../components/User";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
