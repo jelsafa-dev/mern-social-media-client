@@ -1,4 +1,3 @@
-import { Box, useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 import Navbar from "./../components/Navbar";
 import MyPost from "./../components/MyPost";
@@ -8,38 +7,25 @@ import FriendList from "../components/FriendList";
 import User from "./../components/User";
 
 const Home = () => {
-  const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
   const { _id, picturePath } = useSelector((state) => state.user);
-  const advert = useSelector((state) => state.advert);
 
   return (
     <div className="bg-gray-50 dark:bg-slate-900">
       <Navbar />
-      <Box
-        width="100%"
-        padding="2rem 6%"
-        display={isNonMobileScreens ? "flex" : "block"}
-        gap="0.5rem"
-        justifyContent="space-between"
-      >
-        <Box flexBasis={isNonMobileScreens ? "26%" : undefined}>
+      <div className="block sm:flex w-100 p-8 gap-8 md:gap-4 justify-center">
+        <div className="min-w-[270px] max-w-[320px] lg:min-w-[340px] lg:max-w-[420px] hidden sm:block">
           <User userId={_id} picturePath={picturePath} />
-        </Box>
-        <Box
-          flexBasis={isNonMobileScreens ? "42%" : undefined}
-          mt={isNonMobileScreens ? undefined : "2rem"}
-        >
+        </div>
+        <div className="sm:min-w-[440px] sm:max-w-[460px] lg:min-w-[640px] lg:max-w-[680px]">
           <MyPost picturePath={picturePath} />
           <Posts userId={_id} />
-        </Box>
-        {isNonMobileScreens && (
-          <Box flexBasis="26%">
-            <Advert {...advert} />
-            <div className="my-4" />
-            <FriendList userId={_id} />
-          </Box>
-        )}
-      </Box>
+        </div>
+        <div className="min-w-[240px] max-w-[280px] lg:min-w-[340px] lg:max-w-[420px] hidden md:block">
+          <Advert />
+          <div className="my-4" />
+          <FriendList userId={_id} />
+        </div>
+      </div>
     </div>
   );
 };

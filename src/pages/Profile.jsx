@@ -1,4 +1,3 @@
-import { Box, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -12,7 +11,6 @@ const Profile = () => {
   const [user, setUser] = useState(null);
   const { userId } = useParams();
   const token = useSelector((state) => state.token);
-  const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
 
   const getUser = async () => {
     const response = await fetch(`http://localhost:3001/users/${userId}`, {
@@ -30,30 +28,21 @@ const Profile = () => {
   if (!user) return null;
 
   return (
-    <Box>
+    <div className="bg-gray-50 dark:bg-slate-900">
       <Navbar />
-      <Box
-        width="100%"
-        padding="2rem 6%"
-        display={isNonMobileScreens ? "flex" : "block"}
-        gap="2rem"
-        justifyContent="center"
-      >
-        <Box flexBasis={isNonMobileScreens ? "26%" : undefined}>
+      <div className="block sm:flex w-100 p-8 gap-8 justify-center">
+        <div className="lg:min-w-[400px] md:max-w-[420px] hidden md:block">
           <User userId={userId} picturePath={user.picturePath} />
-          <Box m="2rem 0" />
+          <div className="my-4" />
           <FriendList userId={userId} />
-        </Box>
-        <Box
-          flexBasis={isNonMobileScreens ? "42%" : undefined}
-          mt={isNonMobileScreens ? undefined : "2rem"}
-        >
+        </div>
+        <div className="lg:min-w-[400px] lg:max-w-[420px]">
           <MyPost picturePath={user.picturePath} />
-          <Box m="2rem 0" />
+          <div className="my-4" />
           <Posts userId={userId} isProfile />
-        </Box>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 };
 

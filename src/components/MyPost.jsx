@@ -42,7 +42,7 @@ const MyPost = ({ picturePath }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-sm">
+    <div className="bg-white dark:bg-slate-800 rounded-lg px-4 py-4 lg:px-6 lg:py-8 ring-1 ring-slate-900/5 shadow-sm">
       <div className="flex items-center gap-6">
         <UserImage image={picturePath} />
         <div className="w-full rounded-full py-4 px-8 bg-gray-100">

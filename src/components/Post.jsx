@@ -41,7 +41,7 @@ const Post = ({
   };
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-sm my-4">
+    <div className="bg-white dark:bg-slate-800 rounded-lg px-4 py-4 lg:px-6 lg:py-8 ring-1 ring-slate-900/5 shadow-sm my-4">
       <Friend
         friendId={postUserId}
         name={name}

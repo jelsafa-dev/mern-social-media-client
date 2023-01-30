@@ -8,11 +8,6 @@ const mode = {
 const initialState = {
   mode: mode.light,
   user: null,
-  advert: {
-    title: "MikaCosmetics",
-    url: "mikacosmetics.com",
-    text: "..",
-  },
   token: null,
   posts: [],
 };

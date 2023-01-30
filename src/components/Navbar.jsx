@@ -32,7 +32,7 @@ const Navbar = () => {
     >
       <div className={`flex justify-between items-center gap-7`}>
         <Title />
-        <div className="flex w-full rounded-full py-2 px-6 bg-gray-100">
+        <div className="hidden md:flex w-full rounded-full py-2 px-6 bg-gray-100">
           <input
             className="w-full bg-transparent focus:outline-none"
             placeholder="Search..."
@@ -43,7 +43,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="flex justify-between items-center gap-8">
+      <div className="hidden sm:flex justify-between items-center gap-8">
         <button onClick={() => dispatch(toggleMode())}>
           {mode === "dark" ? (
             <DarkMode sx={{ fontSize: "25px" }} />

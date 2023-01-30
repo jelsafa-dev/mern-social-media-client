@@ -1,10 +1,11 @@
 const UserImage = ({ image }) => {
+  const size = `max-h-[40px] max-w-[40px] h-[40px] w-[40px] lg:max-h-[55px] lg:max-w-[55px] lg:h-[55px] lg:w-[55px]`;
   return (
-    <div className={`max-h-[55px] max-w-[55px] h-[55px] w-[55px]`}>
+    <div className={size}>
       <img
-        className={`max-h-[55px] max-w-[55px] h-[55px] w-[55px] object-cover rounded-full`}
+        className={`${size} object-cover rounded-full`}
         alt="user"
-        src={`http://localhost:3001/assets/user.jpeg`}
+        src={`http://localhost:3001/assets/${image}`}
       />
     </div>
   );
