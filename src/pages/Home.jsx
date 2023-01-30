@@ -6,7 +6,6 @@ import Posts from "./../components/Posts";
 import Advert from "../components/Advert";
 import FriendList from "../components/FriendList";
 import User from "./../components/User";
-import NavbarOld from "./../components/NavbarOld";
 
 const Home = () => {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
@@ -14,8 +13,7 @@ const Home = () => {
   const advert = useSelector((state) => state.advert);
 
   return (
-    <Box>
-      <NavbarOld />
+    <div className="bg-gray-50 dark:bg-slate-900">
       <Navbar />
       <Box
         width="100%"
@@ -42,7 +40,7 @@ const Home = () => {
           </Box>
         )}
       </Box>
-    </Box>
+    </div>
   );
 };
 
