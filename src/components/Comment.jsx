@@ -1,12 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const Comment = ({
-  postUserId,
-  firstName,
-  lastName,
-  userPicturePath,
-  comment,
-}) => {
+const Comment = ({ userId, firstName, lastName, userPicturePath, comment }) => {
   const navigate = useNavigate();
 
   return (
@@ -19,7 +13,7 @@ const Comment = ({
         <p
           className="font-bold text-sm hover:text-gray-500 cursor-pointer"
           onClick={() => {
-            navigate(`/profile/${postUserId}`);
+            navigate(`/profile/${userId}`);
           }}
         >
           {firstName} {lastName}

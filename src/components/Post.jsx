@@ -83,11 +83,7 @@ const Post = ({
         <div className="mt-2">
           {comments &&
             comments.map((comment, i) => (
-              <Comment
-                {...comment}
-                postUserId={postUserId}
-                key={`${comment._id}`}
-              />
+              <Comment {...comment} key={`${comment._id}`} />
             ))}
         </div>
       )}

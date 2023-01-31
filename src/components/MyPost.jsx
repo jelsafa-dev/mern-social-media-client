@@ -11,7 +11,6 @@ import Dropzone from "react-dropzone";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
-import UserImage from "./UserImage";
 
 const MyPost = ({ picturePath }) => {
   const dispatch = useDispatch();
@@ -43,9 +42,13 @@ const MyPost = ({ picturePath }) => {
 
   return (
     <div className="bg-white dark:bg-slate-800 rounded-lg px-4 py-4 lg:px-6 lg:py-8 ring-1 ring-slate-900/5 shadow-sm">
-      <div className="flex items-center gap-6">
-        <UserImage image={picturePath} />
-        <div className="w-full rounded-full py-4 px-8 bg-gray-100">
+      <div className="flex items-center gap-4">
+        <img
+          className={`h-[45px] w-[45px] object-cover rounded-full`}
+          alt="user"
+          src={`http://localhost:3001/assets/${picturePath}`}
+        />
+        <div className="w-full rounded-full py-4 px-6 bg-gray-100">
           <input
             className="w-full bg-transparent focus:outline-none"
             placeholder="What's on your mind..."
