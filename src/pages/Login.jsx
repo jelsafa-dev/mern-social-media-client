@@ -53,7 +53,10 @@ const Login = () => {
             </h5>
             <p className="text-gray-900 dark:text-white text-[14px]">
               <span>Or </span>
-              <span className="text-blue-500 font-medium hover:text-blue-400 cursor-pointer">
+              <span
+                className="text-blue-500 font-medium hover:text-blue-400 cursor-pointer"
+                onClick={() => navigate("/register")}
+              >
                 create a new account
               </span>
             </p>
