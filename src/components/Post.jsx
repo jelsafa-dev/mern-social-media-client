@@ -8,6 +8,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
 import Friend from "./Friend";
+import Comment from "./Comment";
+import MyComment from "./MyComment";
 
 const Post = ({
   postId,
@@ -76,13 +78,16 @@ const Post = ({
           </div>
         </div>
       </div>
+      <MyComment picturePath={userPicturePath} postId={postId} />
       {isComments && (
         <div className="mt-2">
           {comments &&
             comments.map((comment, i) => (
-              <div key={`${name}-${i}`}>
-                <p className="mx-2 pl-2">{comment}</p>
-              </div>
+              <Comment
+                {...comment}
+                postUserId={postUserId}
+                key={`${comment._id}`}
+              />
             ))}
         </div>
       )}

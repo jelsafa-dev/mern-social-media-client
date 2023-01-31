@@ -84,39 +84,6 @@ const Navbar = () => {
       >
         <Menu />
       </button>
-
-      <div
-        className="hidden"
-        position="fixed"
-        right="0"
-        bottom="0"
-        height="100%"
-        zIndex="10"
-        maxWidth="500px"
-        minWidth="300px"
-      >
-        <div display="flex" justifyContent="flex-end" p="1rem">
-          <button onClick={() => setIsMobileMenuToggle(!isMobileMenuToggled)}>
-            <Close />
-          </button>
-        </div>
-
-        <div className="flex flex-col justify-center items-center gap-12">
-          <button
-            sx={{ fontSize: "25px" }}
-            onClick={() => dispatch(toggleMode())}
-          >
-            {mode === "dark" ? (
-              <DarkMode sx={{ fontSize: "25px" }} />
-            ) : (
-              <LightMode sx={{ fontSize: "25px" }} />
-            )}
-          </button>
-          <Message sx={{ fontSize: "25px" }} />
-          <Notifications sx={{ fontSize: "25px" }} />
-          <Help sx={{ fontSize: "25px" }} />
-        </div>
-      </div>
     </div>
   );
 };

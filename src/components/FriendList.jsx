@@ -25,6 +25,7 @@ const FriendList = ({ className, userId }) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!Array.isArray(friends)) return null;
+  if (!friends.length) return null;
 
   return (
     <div
