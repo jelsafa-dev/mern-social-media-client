@@ -26,6 +26,7 @@ const initialValuesRegister = {
 };
 
 const Register = () => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
 
   const register = async (values, onSubmitProps) => {
@@ -35,13 +36,10 @@ const Register = () => {
     }
     formData.append("picturePath", values.picture.name);
 
-    const savedUserResponse = await fetch(
-      "http://localhost:3001/auth/register",
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
+    const savedUserResponse = await fetch(`${API_URL}/auth/register`, {
+      method: "POST",
+      body: formData,
+    });
     const savedUser = await savedUserResponse.json();
     onSubmitProps.resetForm();
 

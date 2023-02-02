@@ -21,6 +21,7 @@ const Post = ({
   likes,
   comments,
 }) => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const [isComments, setIsComments] = useState(false);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
@@ -29,7 +30,7 @@ const Post = ({
   const likeCount = Object.keys(likes).length;
 
   const patchLike = async () => {
-    const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
+    const response = await fetch(`${API_URL}/posts/${postId}/like`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -54,7 +55,7 @@ const Post = ({
         <img
           className="w-100 h-auto rounded-lg mt-3"
           alt="post"
-          src={`http://localhost:3001/assets/${picturePath}`}
+          src={`${API_URL}/assets/${picturePath}`}
         />
       )}
       <div className="flex justify-between items-center mt-4">

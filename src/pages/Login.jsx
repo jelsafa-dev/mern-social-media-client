@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setLogin } from "state";
 import { Title } from "./../components/Title";
+import { login } from "services/api";
 
 const loginSchema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Required"),
@@ -16,11 +17,12 @@ const initialValuesLogin = {
 };
 
 const Login = () => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogin = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
+    const loggedInResponse = await fetch(`${API_URL}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
@@ -28,9 +30,9 @@ const Login = () => {
     const loggedIn = await loggedInResponse.json();
     onSubmitProps.resetForm();
 
-    console.log(loggedIn);
-
     if (loggedIn) {
+      localStorage.setItem("token", loggedIn.token);
+
       dispatch(
         setLogin({
           user: loggedIn.user,

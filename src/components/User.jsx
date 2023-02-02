@@ -7,15 +7,15 @@ import {
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import UserImage from "./UserImage";
 
 const User = ({ userId, picturePath }) => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const token = useSelector((state) => state.token);
 
   const getUser = async () => {
-    const response = await fetch(`http://localhost:3001/users/${userId}`, {
+    const response = await fetch(`${API_URL}/users/${userId}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -52,7 +52,11 @@ const User = ({ userId, picturePath }) => {
         onClick={() => navigate(`/profile/${userId}`)}
       >
         <div className="flex justify-between items-center gap-2">
-          <UserImage image={picturePath} />
+          <img
+            className={`max-h-[40px] max-w-[40px] h-[40px] w-[40px] object-cover rounded-full`}
+            alt="user"
+            src={`${API_URL}/assets/${picturePath}`}
+          />
           <div className="flex flex-col">
             <h4 className="font-medium text-lg cursor-pointer hover:text-gray-500">
               {firstName} {lastName}

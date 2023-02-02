@@ -26,6 +26,12 @@ const Navbar = () => {
   const mode = useSelector((state) => state.mode);
 
   const fullName = `${user?.firstName} ${user?.lastName}`;
+
+  const handleLogout = () => {
+    dispatch(setLogout());
+    localStorage.removeItem("token");
+  };
+
   return (
     <div
       className={`flex justify-between items-center py-1 px-4 md:px-8 shadow-sm bg-white dark:bg-slate-800`}
@@ -71,7 +77,7 @@ const Navbar = () => {
         <div className="absolute right-8 top-[3rem] w-40 border rounded py-2 bg-white shadow-lg">
           <button
             className="hover:bg-gray-100 w-full px-4 py-2 text-left text-gray-900"
-            onClick={() => dispatch(setLogout())}
+            onClick={handleLogout}
           >
             Log Out
           </button>

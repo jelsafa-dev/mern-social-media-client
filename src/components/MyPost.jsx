@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
 
 const MyPost = ({ picturePath }) => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const dispatch = useDispatch();
   const [isImage, setIsImage] = useState(false);
   const [image, setImage] = useState(null);
@@ -29,7 +30,7 @@ const MyPost = ({ picturePath }) => {
       formData.append("picturePath", image.name);
     }
 
-    const response = await fetch(`http://localhost:3001/posts`, {
+    const response = await fetch(`${API_URL}/posts`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
@@ -46,7 +47,7 @@ const MyPost = ({ picturePath }) => {
         <img
           className={`h-[45px] w-[45px] object-cover rounded-full`}
           alt="user"
-          src={`http://localhost:3001/assets/${picturePath}`}
+          src={`${API_URL}/assets/${picturePath}`}
         />
         <div className="w-full rounded-full py-4 px-6 bg-gray-100">
           <input

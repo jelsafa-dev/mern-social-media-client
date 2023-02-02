@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
 
 const Comment = ({ userId, firstName, lastName, userPicturePath, comment }) => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
 
   return (
     <div className="flex gap-4 py-3 border-t">
       <img
-        className="rounded-full w-[40px] h-[40px] max-w-[40px] max-h-[40px] object-cover"
-        src={`http://localhost:3001/assets/${userPicturePath}`}
+        className="rounded-full w-[35px] h-[35px] max-w-[35px] max-h-[35px] object-cover"
+        src={`${API_URL}/assets/${userPicturePath}`}
       />
       <div className="flex flex-col gap-1">
         <p

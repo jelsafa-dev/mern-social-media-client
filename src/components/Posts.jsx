@@ -4,12 +4,13 @@ import { setPosts } from "state";
 import Post from "./Post";
 
 const Posts = ({ userId, isProfile = false }) => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   const posts = useSelector((state) => state.posts);
 
   const getPosts = async () => {
-    const response = await fetch("http://localhost:3001/posts", {
+    const response = await fetch(`${API_URL}/posts`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -18,13 +19,10 @@ const Posts = ({ userId, isProfile = false }) => {
   };
 
   const getUserPosts = async () => {
-    const response = await fetch(
-      `http://localhost:3001/posts/${userId}/posts`,
-      {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
+    const response = await fetch(`${API_URL}/posts/${userId}/posts`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
     const data = await response.json();
     dispatch(setPosts({ posts: data }));
   };

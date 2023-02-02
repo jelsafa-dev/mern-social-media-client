@@ -2,9 +2,9 @@ import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setFriends } from "state";
-import UserImage from "./UserImage";
 
 const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { _id } = useSelector((state) => state.user);
@@ -17,16 +17,13 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const isUser = friendId === _id;
 
   const patchFriend = async () => {
-    const response = await fetch(
-      `http://localhost:3001/users/${_id}/${friendId}`,
-      {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`${API_URL}/users/${_id}/${friendId}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
     const data = await response.json();
     dispatch(setFriends({ friends: data }));
   };
@@ -40,7 +37,11 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
           navigate(0);
         }}
       >
-        <UserImage image={userPicturePath} size="55px" />
+        <img
+          className={`max-h-[40px] max-w-[40px] h-[40px] w-[40px] object-cover rounded-full`}
+          alt="user"
+          src={`${API_URL}/assets/${userPicturePath}`}
+        />
         <div className="flex flex-col gap-1">
           <h5 className="font-semibold text-gray-500 text-base">{name}</h5>
           <span className="text-xs text-gray-400">{subtitle}</span>
