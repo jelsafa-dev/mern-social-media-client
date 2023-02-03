@@ -217,7 +217,7 @@ const Register = () => {
                       }}
                     >
                       {({ getRootProps, getInputProps }) => (
-                        <div className="flex cursor-pointer w-100 gap-4">
+                        <div className="flex cursor-pointer w-100 gap-4 justify-between">
                           <div
                             {...getRootProps()}
                             className="text-gray-500 hover:text-gray-400"

@@ -66,7 +66,7 @@ const MyPost = ({ picturePath }) => {
             onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}
           >
             {({ getRootProps, getInputProps }) => (
-              <div className="flex cursor-pointer w-100 gap-4">
+              <div className="flex cursor-pointer w-100 gap-4 justify-between">
                 <div
                   {...getRootProps()}
                   className="text-gray-500 hover:text-gray-400"
@@ -76,7 +76,9 @@ const MyPost = ({ picturePath }) => {
                   ) : (
                     <div className="flex items-center gap-4">
                       <EditOutlined />
-                      <p>{image.name}</p>
+                      <p className="truncate hover:text-clip max-w-xs">
+                        {image.name}
+                      </p>
                     </div>
                   )}
                 </div>
