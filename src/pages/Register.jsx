@@ -6,13 +6,13 @@ import { EditOutlined, DeleteOutlined } from "@mui/icons-material";
 import { Title } from "./../components/Title";
 
 const registerSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
-  password: yup.string().required("required"),
-  location: yup.string().required("required"),
-  occupation: yup.string().required("required"),
-  picture: yup.string().required("required"),
+  firstName: yup.string().required("*required"),
+  lastName: yup.string().required("*required"),
+  email: yup.string().email("*invalid").required("*required"),
+  password: yup.string().required("*required"),
+  location: yup.string().required("*required"),
+  occupation: yup.string().required("*required"),
+  picture: yup.string().required("*required"),
 });
 
 const initialValuesRegister = {

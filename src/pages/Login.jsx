@@ -4,11 +4,10 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setLogin } from "state";
 import { Title } from "./../components/Title";
-import { login } from "services/api";
 
 const loginSchema = yup.object().shape({
-  email: yup.string().email("Invalid email").required("Required"),
-  password: yup.string().required("Required"),
+  email: yup.string().email("*invalid").required("*required"),
+  password: yup.string().required("*required"),
 });
 
 const initialValuesLogin = {
@@ -44,7 +43,7 @@ const Login = () => {
   };
   return (
     <div className="flex flex-col items-center bg-white dark:bg-slate-900 w-full h-full">
-      <div className="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-sm m-auto">
+      <div className="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 m-auto shadow-sm">
         <div className="w-100 text-center">
           <Title />
         </div>
