@@ -96,21 +96,21 @@ const MyPost = ({ picturePath }) => {
       <div className="border-b w-100 my-5" />
       <div className="flex justify-between items-center">
         <div
-          className="flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 cursor-pointer"
+          className="flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 dark:text-gray-100 cursor-pointer"
           onClick={() => setIsImage(!isImage)}
         >
           <ImageOutlined />
           <p>Image</p>
         </div>
-        <div className="hidden md:flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 cursor-pointer">
+        <div className="hidden md:flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 dark:text-gray-100 cursor-pointer">
           <GifBoxOutlined />
           <p>Clip</p>
         </div>
-        <div className="hidden md:flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 cursor-pointer">
+        <div className="hidden md:flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 dark:text-gray-100 cursor-pointer">
           <AttachFileOutlined />
           <p>Attachment</p>
         </div>
-        <div className="hidden md:flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 cursor-pointer">
+        <div className="hidden md:flex justify-between items-center gap-1 text-gray-500 hover:text-gray-400 dark:text-gray-100 cursor-pointer">
           <MicOutlined />
           <p>Audio</p>
         </div>

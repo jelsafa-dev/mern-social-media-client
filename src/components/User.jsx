@@ -61,7 +61,9 @@ const User = ({ userId, picturePath }) => {
             <h4 className="font-medium text-lg cursor-pointer hover:text-gray-500">
               {firstName} {lastName}
             </h4>
-            <span className="text-gray-400">{friends.length} friends</span>
+            <span className="text-gray-400 dark:text-gray-100">
+              {friends.length} friends
+            </span>
           </div>
         </div>
         <ManageAccountsOutlined />
@@ -69,23 +71,37 @@ const User = ({ userId, picturePath }) => {
       <div className="border-b w-100" />
       <div className="flex flex-col py-4">
         <div className="flex items-center gap-4 mb-2">
-          <LocationOnOutlined fontSize="large" className="text-gray-500" />
-          <p className="text-gray-400">{location}</p>
+          <LocationOnOutlined
+            fontSize="large"
+            className="text-gray-500 dark:text-gray-100"
+          />
+          <p className="text-gray-400 dark:text-gray-50">{location}</p>
         </div>
         <div className="flex items-center gap-4 mb-2">
-          <WorkOutlineOutlined fontSize="large" className="text-gray-500" />
-          <p className="text-gray-400">{occupation}</p>
+          <WorkOutlineOutlined
+            fontSize="large"
+            className="text-gray-500 dark:text-gray-100"
+          />
+          <p className="text-gray-400 dark:text-gray-50">{occupation}</p>
         </div>
       </div>
       <div className="border-b w-100" />
       <div className="flex flex-col py-4">
         <div className="flex justify-between items-center gap-4 mb-2">
-          <p className="text-gray-400">Who's viewed your profile</p>
-          <p className="text-gray-500 font-medium">{viewedProfile}</p>
+          <p className="text-gray-400 dark:text-gray-50">
+            Who's viewed your profile
+          </p>
+          <p className="text-gray-500 dark:text-gray-100 font-medium">
+            {viewedProfile}
+          </p>
         </div>
         <div className="flex justify-between items-center gap-4 mb-2">
-          <p className="text-gray-400">Impressions of your post</p>
-          <p className="text-gray-500 font-medium">{impressions}</p>
+          <p className="text-gray-400 dark:text-gray-50">
+            Impressions of your post
+          </p>
+          <p className="text-gray-500 dark:text-gray-100 font-medium">
+            {impressions}
+          </p>
         </div>
       </div>
       <div className="border-b w-100" />

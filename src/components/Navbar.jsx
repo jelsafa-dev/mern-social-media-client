@@ -33,7 +33,7 @@ const Navbar = () => {
   };
 
   return (
-    <div
+    <nav
       className={`flex justify-between items-center py-1 px-4 md:px-8 shadow-sm bg-white dark:bg-slate-800`}
     >
       <div className={`flex justify-between items-center gap-7`}>
@@ -85,12 +85,21 @@ const Navbar = () => {
       )}
 
       <button
-        className="hidden"
+        className="sm:hidden"
         onClick={() => setIsMobileMenuToggle(!isMobileMenuToggled)}
       >
         <Menu />
       </button>
-    </div>
+
+      {isMobileMenuToggled && (
+        <div className="fixed top-0 left-0 w-100 h-100 bg-black z-10 slide-bottom">
+          <Close
+            className="absolute top-5"
+            onClick={() => setIsMobileMenuToggle(!isMobileMenuToggled)}
+          />
+        </div>
+      )}
+    </nav>
   );
 };
 

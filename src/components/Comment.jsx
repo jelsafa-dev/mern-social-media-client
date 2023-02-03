@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const Comment = ({ userId, firstName, lastName, userPicturePath, comment }) => {
-  const API_URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
 
   return (

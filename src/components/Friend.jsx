@@ -38,13 +38,17 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
         }}
       >
         <img
-          className={`max-h-[40px] max-w-[40px] h-[40px] w-[40px] object-cover rounded-full`}
+          className={`max-h-[55px] max-w-[55px] h-[55px] w-[55px] object-cover rounded-full`}
           alt="user"
           src={`${API_URL}/assets/${userPicturePath}`}
         />
         <div className="flex flex-col gap-1">
-          <h5 className="font-semibold text-gray-500 text-base">{name}</h5>
-          <span className="text-xs text-gray-400">{subtitle}</span>
+          <h5 className="font-semibold text-gray-500 dark:text-gray-50 text-base">
+            {name}
+          </h5>
+          <span className="text-xs text-gray-400 dark:text-gray-100">
+            {subtitle}
+          </span>
         </div>
       </div>
       {!isUser && (

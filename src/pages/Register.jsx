@@ -2,7 +2,7 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import Dropzone from "react-dropzone";
-import { EditOutlined } from "@mui/icons-material";
+import { EditOutlined, DeleteOutlined } from "@mui/icons-material";
 import { Title } from "./../components/Title";
 
 const registerSchema = yup.object().shape({
@@ -208,7 +208,7 @@ const Register = () => {
                     </div>
                   </div>
 
-                  <div className="p-4">
+                  <div className="border-2 border-dashed rounded p-4">
                     <Dropzone
                       acceptedFiles=".jpg,.jpeg,.png"
                       multiple={false}
@@ -217,18 +217,29 @@ const Register = () => {
                       }}
                     >
                       {({ getRootProps, getInputProps }) => (
-                        <div
-                          className="cursor-pointer border-dashed p-4"
-                          {...getRootProps()}
-                        >
-                          <input {...getInputProps()} />
-                          {!values.picture ? (
-                            <p>Add Picture Here</p>
-                          ) : (
-                            <div className="flex justify-between items-center">
-                              <span>{values.picture.name}</span>
-                              <EditOutlined />
-                            </div>
+                        <div className="flex cursor-pointer w-100 gap-4">
+                          <div
+                            {...getRootProps()}
+                            className="text-gray-500 hover:text-gray-400"
+                          >
+                            {!values.picture ? (
+                              <p>Add Image Here...</p>
+                            ) : (
+                              <div className="flex items-center gap-4">
+                                <EditOutlined />
+                                <p className="truncate hover:text-clip max-w-xs">
+                                  {values.picture.name}
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                          {values.picture && (
+                            <button
+                              className="text-gray-500 hover:text-gray-400"
+                              onClick={() => setFieldValue("picture", null)}
+                            >
+                              <DeleteOutlined />
+                            </button>
                           )}
                         </div>
                       )}
