@@ -92,11 +92,61 @@ const Navbar = () => {
       </button>
 
       {isMobileMenuToggled && (
-        <div className="fixed top-0 left-0 w-100 h-100 bg-black z-10 slide-bottom">
+        <div className="fixed top-0 left-0 w-full h-full bg-slate-800 bg-opacity-90 z-10 slide-bottom flex justify-items-center items-center">
           <Close
-            className="absolute top-5"
+            className="absolute top-8 right-8 cursor-pointer shadow-sm text-slate-50 hover:text-slate-400"
+            sx={{ fontSize: "30px" }}
             onClick={() => setIsMobileMenuToggle(!isMobileMenuToggled)}
           />
+          <div className="flex flex-col items-center justify-center w-full gap-4">
+            <button
+              onClick={() => {
+                dispatch(toggleMode());
+                setIsMobileMenuToggle(false);
+              }}
+              className="shadow-sm text-base text-slate-50 hover:text-slate-400"
+            >
+              {mode === "dark" ? (
+                <DarkMode className="mr-1" sx={{ fontSize: "20px" }} />
+              ) : (
+                <LightMode className="mr-1" sx={{ fontSize: "20px" }} />
+              )}
+              {mode === "dark" ? "Dark" : "Light"}
+            </button>
+            <button
+              onClick={() => {
+                setIsMobileMenuToggle(false);
+              }}
+              className="shadow-sm text-base text-slate-50 hover:text-slate-400"
+            >
+              Message
+            </button>
+            <button
+              onClick={() => {
+                setIsMobileMenuToggle(false);
+              }}
+              className="shadow-sm text-base text-slate-50 hover:text-slate-400"
+            >
+              Notifications
+            </button>
+            <button
+              onClick={() => {
+                setIsMobileMenuToggle(false);
+              }}
+              className="shadow-sm text-base text-slate-50 hover:text-slate-400"
+            >
+              Help
+            </button>
+            <button
+              onClick={() => {
+                handleLogout();
+                setIsMobileMenuToggle(false);
+              }}
+              className="shadow-sm text-base text-slate-50 hover:text-slate-400"
+            >
+              Log Out
+            </button>
+          </div>
         </div>
       )}
     </nav>
